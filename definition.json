@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "$connections": {
+      "type": "object",
+      "defaultValue": {}
+    },
+    "arm": {
+      "type": "object",
+      "defaultValue": {}
+    }
+  },
+  "triggers": {
+    "manual": {
+      "type": "Request",
+      "kind": "Http",
+      "inputs": {
+        "schema": {}
+      }
+    }
+  },
+  "actions": {
+    "GetDeploymentHistories": {
+      "type": "ApiConnection",
+      "runAfter": {},
+      "description": "Gets the all deployment history.",
+      "inputs": {
+        "host": {
+          "connection": {
+            "name": "@parameters('$connections')['arm']['connectionId']"
+          }
+        },
+        "method": "get",
+        "path": "/subscriptions/@{encodeURIComponent(parameters('arm')['subscriptionId'])}/resourcegroups/@{encodeURIComponent(parameters('arm')['resourceGroup'])}/providers/Microsoft.Resources/deployments",
+        "queries": {
+          "x-ms-api-version": "@parameters('arm')['apiVersion']"
+        }
+      }
+    },
+    "Response": {
+      "type": "Response",
+      "runAfter": {
+        "GetDeploymentHistories": [
+          "Succeeded"
+        ]
+      },
+      "description": "Returns the successful response.",
+      "inputs": {
+        "statusCode": 200,
+        "body": "@body('GetDeploymentHistories')?.value"
+      }
+    }
+  },
+  "outputs": {}
+}

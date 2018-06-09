@@ -1,0 +1,17 @@
+{
+  "$connections": {
+    "value": {
+      "arm": {
+        "connectionId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Web/connections/{connectorName}",
+        "id": "/subscriptions/{subscriptionId}/providers/Microsoft.Web/locations/australiasoutheast/managedApis/arm"
+      }
+    }
+  },
+  "arm": {
+    "value": {
+      "subscriptionId": "{subscriptionId}",
+      "resourceGroup": "{resourceGroup}",
+      "apiVersion": "{apiVersion}"
+    }
+  }
+}
