@@ -5,7 +5,7 @@ This provides sample codes how to separate Azure Logic App definition from ARM t
 
 ## Further Reading ##
 
-* 한국어: [ARM 템플릿에서 로직앱 분리하기](#)
+* 한국어: [ARM 템플릿에서 로직앱 분리해 내기](https://blog.aliencube.org/ko/2018/06/09/separation-of-concerns-logic-app-from-arm-template/)
 * English: TBD
 
 
